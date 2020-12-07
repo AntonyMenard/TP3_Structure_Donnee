@@ -3,4 +3,4 @@ project(TP3_Structure_Donnee)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(TP3_Structure_Donnee main.cpp)
+add_executable(TP3_Structure_Donnee main.cpp node.cpp node.h BST.cpp BST.h)

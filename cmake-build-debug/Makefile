@@ -127,6 +127,33 @@ TP3_Structure_Donnee\fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP3_Structure_Donnee.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\TP3_Structure_Donnee.dir\build
 .PHONY : TP3_Structure_Donnee\fast
 
+BST.obj: BST.cpp.obj
+
+.PHONY : BST.obj
+
+# target to build an object file
+BST.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP3_Structure_Donnee.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\TP3_Structure_Donnee.dir\BST.cpp.obj
+.PHONY : BST.cpp.obj
+
+BST.i: BST.cpp.i
+
+.PHONY : BST.i
+
+# target to preprocess a source file
+BST.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP3_Structure_Donnee.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\TP3_Structure_Donnee.dir\BST.cpp.i
+.PHONY : BST.cpp.i
+
+BST.s: BST.cpp.s
+
+.PHONY : BST.s
+
+# target to generate assembly for a file
+BST.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP3_Structure_Donnee.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\TP3_Structure_Donnee.dir\BST.cpp.s
+.PHONY : BST.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -154,6 +181,33 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP3_Structure_Donnee.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\TP3_Structure_Donnee.dir\main.cpp.s
 .PHONY : main.cpp.s
 
+node.obj: node.cpp.obj
+
+.PHONY : node.obj
+
+# target to build an object file
+node.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP3_Structure_Donnee.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\TP3_Structure_Donnee.dir\node.cpp.obj
+.PHONY : node.cpp.obj
+
+node.i: node.cpp.i
+
+.PHONY : node.i
+
+# target to preprocess a source file
+node.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP3_Structure_Donnee.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\TP3_Structure_Donnee.dir\node.cpp.i
+.PHONY : node.cpp.i
+
+node.s: node.cpp.s
+
+.PHONY : node.s
+
+# target to generate assembly for a file
+node.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP3_Structure_Donnee.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\TP3_Structure_Donnee.dir\node.cpp.s
+.PHONY : node.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -163,9 +217,15 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... TP3_Structure_Donnee
+	@echo ... BST.obj
+	@echo ... BST.i
+	@echo ... BST.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... node.obj
+	@echo ... node.i
+	@echo ... node.s
 .PHONY : help
 
 

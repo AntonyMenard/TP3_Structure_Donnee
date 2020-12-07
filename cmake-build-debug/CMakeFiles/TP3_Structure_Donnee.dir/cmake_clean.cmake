@@ -1,5 +1,7 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/TP3_Structure_Donnee.dir/BST.cpp.obj"
   "CMakeFiles/TP3_Structure_Donnee.dir/main.cpp.obj"
+  "CMakeFiles/TP3_Structure_Donnee.dir/node.cpp.obj"
   "TP3_Structure_Donnee.exe"
   "TP3_Structure_Donnee.exe.manifest"
   "TP3_Structure_Donnee.lib"
