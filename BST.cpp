@@ -4,42 +4,42 @@
 
 #include "BST.h"
 
-BST::BST (node *racine)
+BST::BST (node *root)
 {
 
 }
 
-~BST( )
+~BST::BST( )
 {
 
 }
 
-void BST::Inserer(node *racine, int d)
+void BST::Insert(node *root, int d)
 {
 
 }
 
-void BST::Supprimer(node *racine, int d)
+void BST::Delete(node *root, int d)
 {
 
 }
 
-void BST::Afficher_Arbre(node *racine)
+void BST::Show_Tree(node *root)
 {
 
 }
 
-int BST::Afficher_hauteur(node *racine)
+int BST::Show_Height(node *root)
 {
 
 }
 
-void BST::Afficher_Ascendant(node *racine, int d)
+void BST::Show_Uppers(node *root, int d)
 {
 
 }
 
-void BST::Archiver (node *racine)
+void BST::Archive (node *root)
 {
 
 }
