@@ -11,7 +11,7 @@ class BST {
 private:
     node *root; // La racine de l’arbre binaire de recherche.
 public:
-    BST (node *racine);                    // Construit l’arbre dont la racine est à l’adresse racine.
+    BST (node *root);                    // Construit l’arbre dont la racine est à l’adresse racine.
     ~BST( );                               // Supprime l’espace mémoire occupé par l’arbre dont la racine est à l’adresse racine.
     void Insert(node *root, int d);        // insère le nœud de valeur d dans l’arbre.
     void Delete(node *root, int d);        // Supprime le nœud de valeur d de l’arbre.

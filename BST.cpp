@@ -9,7 +9,7 @@ BST::BST (node *root)
 
 }
 
-~BST::BST( )
+BST::~BST( )
 {
 
 }
@@ -32,6 +32,7 @@ void BST::Show_Tree(node *root)
 int BST::Show_Height(node *root)
 {
 
+    return 0;
 }
 
 void BST::Show_Uppers(node *root, int d)
