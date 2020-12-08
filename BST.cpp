@@ -16,6 +16,14 @@ BST::~BST( )
 
 void BST::Insert(int d)
 {
+    if (root == nullptr)
+        root = new node(d);
+    else
+        Insert(d, root);
+}
+
+void BST::Insert(int d, node *root)
+{
     if (root->valeur > d)
     {
         if (root->gauche == nullptr)
@@ -24,7 +32,7 @@ void BST::Insert(int d)
         }
         else
         {
-            Insert(root->gauche, d);
+            Insert(d, root->gauche);
         }
     }
     else if (root->valeur < d)
@@ -35,7 +43,7 @@ void BST::Insert(int d)
         }
         else
         {
-            Insert(root->droit, d);
+            Insert(d, root->droit);
         }   
     }
 }
