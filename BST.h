@@ -14,6 +14,7 @@ public:
     BST (node *root);                    // Construit l’arbre dont la racine est à l’adresse racine.
     ~BST( );                               // Supprime l’espace mémoire occupé par l’arbre dont la racine est à l’adresse racine.
     void Insert(int d);        // insère le nœud de valeur d dans l’arbre.
+    void Insert(int d, node* root);        // insère le nœud de valeur d dans l’arbre.
     void Delete(int d);        // Supprime le nœud de valeur d de l’arbre.
     void Show_Tree();            //Affiche les éléments de l’arbre niveau par niveau.
     int Show_Height();           //Affiche la hauteur de l’arbre.
