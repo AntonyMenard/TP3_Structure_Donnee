@@ -4,7 +4,7 @@
 
 #include "node.h"
 
-node::node (node *root)
+node::node (int valeur)
 {
-
+    this->valeur = valeur;
 }

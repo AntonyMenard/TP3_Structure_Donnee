@@ -29,13 +29,13 @@ void BST::Insert(node *root, int d)
     }
     else if (root->valeur < d)
     {
-        if (root->droite == nullptr)
+        if (root->droit == nullptr)
         {
-            root->droite = new node(d);
+            root->droit = new node(d);
         }
         else
         {
-            Insert(root->droite, d);
+            Insert(root->droit, d);
         }   
     }
 }
