@@ -14,7 +14,7 @@ BST::~BST( )
 
 }
 
-void BST::Insert(node *root, int d)
+void BST::Insert(int d)
 {
     if (root->valeur > d)
     {
@@ -40,28 +40,28 @@ void BST::Insert(node *root, int d)
     }
 }
 
-void BST::Delete(node *root, int d)
+void BST::Delete(int d)
 {
 
 }
 
-void BST::Show_Tree(node *root)
+void BST::Show_Tree()
 {
 
 }
 
-int BST::Show_Height(node *root)
+int BST::Show_Height()
 {
 
     return 0;
 }
 
-void BST::Show_Uppers(node *root, int d)
+void BST::Show_Uppers(int d)
 {
 
 }
 
-void BST::Archive (node *root)
+void BST::Archive ()
 {
 
 }
