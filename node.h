@@ -7,9 +7,12 @@
 
 
 class node {
+public:
     int valeur;
     node *gauche;
     node *droit;
+    
+    node (int valeur); 
 };
 
 

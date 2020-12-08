@@ -4,3 +4,7 @@
 
 #include "node.h"
 
+node::node (int valeur)
+{
+    this->valeur = valeur;
+}
