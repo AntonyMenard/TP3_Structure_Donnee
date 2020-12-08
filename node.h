@@ -10,6 +10,8 @@ class node {
     int valeur;
     node *gauche;
     node *droit;
+    
+    node (int valeur); 
 };
 
 

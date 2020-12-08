@@ -16,7 +16,28 @@ BST::~BST( )
 
 void BST::Insert(node *root, int d)
 {
-
+    if (root->valeur > d)
+    {
+        if (root->gauche == nullptr)
+        {
+            root->gauche = new node(d);
+        }
+        else
+        {
+            Insert(root->gauche, d);
+        }
+    }
+    else if (root->valeur < d)
+    {
+        if (root->droite == nullptr)
+        {
+            root->droite = new node(d);
+        }
+        else
+        {
+            Insert(root->droite, d);
+        }   
+    }
 }
 
 void BST::Delete(node *root, int d)
