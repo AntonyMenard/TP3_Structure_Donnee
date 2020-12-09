@@ -1,11 +1,15 @@
 //
 // Created by Antony on 2020-12-07.
 //
+
+#include <vector>
+#include <iostream>
 #include "node.h"
 
 #ifndef TP3_STRUCTURE_DONNEE_BST_H
 #define TP3_STRUCTURE_DONNEE_BST_H
 
+using namespace std;
 
 class BST {
 private:
@@ -16,6 +20,8 @@ public:
     void Insert(int d);        // insère le nœud de valeur d dans l’arbre.
     void Insert(int d, node* root);        // insère le nœud de valeur d dans l’arbre.
     void Delete(int d);        // Supprime le nœud de valeur d de l’arbre.
+    void Delete(int d, node *root);
+    vector<int> GetLowerNodesValues(vector<int> values, node *root);
     void Show_Tree();            //Affiche les éléments de l’arbre niveau par niveau.
     int Show_Height();           //Affiche la hauteur de l’arbre.
     void Show_Uppers(int d);   // Affiche les ascendants du nœud de valeur d.

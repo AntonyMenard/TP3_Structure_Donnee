@@ -5,7 +5,9 @@ CMakeFiles\TP3_Structure_Donnee.dir\BST.cpp.obj: ..\BST.cpp
 CMakeFiles\TP3_Structure_Donnee.dir\BST.cpp.obj: ..\BST.h
 CMakeFiles\TP3_Structure_Donnee.dir\BST.cpp.obj: ..\node.h
 
+CMakeFiles\TP3_Structure_Donnee.dir\main.cpp.obj: ..\BST.h
 CMakeFiles\TP3_Structure_Donnee.dir\main.cpp.obj: ..\main.cpp
+CMakeFiles\TP3_Structure_Donnee.dir\main.cpp.obj: ..\node.h
 
 CMakeFiles\TP3_Structure_Donnee.dir\node.cpp.obj: ..\node.cpp
 CMakeFiles\TP3_Structure_Donnee.dir\node.cpp.obj: ..\node.h
