@@ -64,7 +64,6 @@ void DoCommand()
                     if (userInput.at(0) == 'G')
                     {
                         bst.Show_Uppers(nodeValue);
-                        cout << "show upper nodes, " + to_string(nodeValue) + "\n";
                     }
                     else
                         if (userInput.at(0) == 'T')

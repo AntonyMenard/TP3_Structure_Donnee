@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <iostream>
+#include <string>
 #include "node.h"
 
 #ifndef TP3_STRUCTURE_DONNEE_BST_H
@@ -24,8 +25,9 @@ public:
     vector<int> GetLowerNodesValues(vector<int> values, node *root);
     void Show_Tree();            //Affiche les éléments de l’arbre niveau par niveau.
     int Show_Height();           //Affiche la hauteur de l’arbre.
-    int Get_Height(node* root);           //Affiche la hauteur de l’arbre.
+    int Get_Height(node* root);           //Cherche la hauteur de l’arbre.
     void Show_Uppers(int d);   // Affiche les ascendants du nœud de valeur d.
+    vector<int> Get_Uppers(node *currentRoot, vector<int> nodeValues);
     void Archive ();            // Archiver en implémentation séquentielle l’arbre dont la racine est
                                            //dans un fichier texte que vous allez définir.
 };
