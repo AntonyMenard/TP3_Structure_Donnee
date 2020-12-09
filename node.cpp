@@ -7,4 +7,6 @@
 node::node (int valeur)
 {
     this->valeur = valeur;
+    gauche = nullptr;
+    droit = nullptr;
 }
