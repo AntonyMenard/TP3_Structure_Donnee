@@ -112,7 +112,6 @@ void BST::Delete(int d, node *newRoot)
     root = newRoot;
 }
 
-
 vector<int> BST::GetLowerNodesValues(vector<int> values, node *root)
 {
     if (root->left != nullptr)
@@ -140,8 +139,24 @@ void BST::Show_Tree()
 
 int BST::Show_Height()
 {
+    return Get_Height(root);
+}
 
-    return 0;
+int BST::Get_Height(node* root)
+{
+    if (root == nullptr)
+    {
+        return 0;
+    }
+    else
+    {
+        int leftHeight = Get_Height(root->left);
+        int rightHeight = Get_Height(root->right);
+
+        if (leftHeight > rightHeight)
+            return(leftHeight + 1);
+        else return(rightHeight + 1);
+    }
 }
 
 void BST::Show_Uppers(int d)

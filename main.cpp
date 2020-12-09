@@ -57,8 +57,8 @@ void DoCommand()
             else
                 if (userInput.at(0) == 'H')
                 {
-                    bst.Show_Height();
-                    cout << "show height\n";
+                    int height = bst.Show_Height();
+                    cout << "The tree has a height of " + to_string(height) + "\n";
                 }
                 else
                     if (userInput.at(0) == 'G')
