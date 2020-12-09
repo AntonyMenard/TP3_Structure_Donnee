@@ -24,26 +24,26 @@ void BST::Insert(int d)
 
 void BST::Insert(int d, node *root)
 {
-    if (root->valeur > d)
+    if (root->value > d)
     {
-        if (root->gauche == nullptr)
+        if (root->left == nullptr)
         {
-            root->gauche = new node(d);
+            root->left = new node(d);
         }
         else
         {
-            Insert(d, root->gauche);
+            Insert(d, root->left);
         }
     }
-    else if (root->valeur < d)
+    else if (root->value < d)
     {
-        if (root->droit == nullptr)
+        if (root->right == nullptr)
         {
-            root->droit = new node(d);
+            root->right = new node(d);
         }
         else
         {
-            Insert(d, root->droit);
+            Insert(d, root->right);
         }   
     }
 }
@@ -58,7 +58,7 @@ void BST::Delete(int d)
 
 void BST::Delete(int d, node *newRoot)
 {
-    if(root->valeur == d)
+    if(root->value == d)
     {
         vector<int> valueArray;
         valueArray = GetLowerNodesValues(valueArray, newRoot);
@@ -71,11 +71,11 @@ void BST::Delete(int d, node *newRoot)
         }
     }
     else
-    if (newRoot->gauche != nullptr && newRoot->gauche->valeur == d)
+    if (newRoot->left != nullptr && newRoot->left->value == d)
     {
         vector<int> valueArray;
-        valueArray = GetLowerNodesValues(valueArray, newRoot->gauche);
-        newRoot->gauche = nullptr;
+        valueArray = GetLowerNodesValues(valueArray, newRoot->left);
+        newRoot->left = nullptr;
 
         for (int i = 0; i < valueArray.size(); ++i)
         {
@@ -83,11 +83,11 @@ void BST::Delete(int d, node *newRoot)
         }
     }
     else
-        if (newRoot->droit != nullptr && newRoot->droit->valeur == d)
+        if (newRoot->right != nullptr && newRoot->right->value == d)
         {
             vector<int> valueArray;
-            valueArray = GetLowerNodesValues(valueArray, newRoot->droit);
-            newRoot->droit = nullptr;
+            valueArray = GetLowerNodesValues(valueArray, newRoot->right);
+            newRoot->right = nullptr;
 
             for (int i = 0; i < valueArray.size(); ++i)
             {
@@ -95,14 +95,14 @@ void BST::Delete(int d, node *newRoot)
             }
         }
         else
-            if (newRoot->gauche != nullptr && newRoot->gauche->valeur < d)
+            if (newRoot->left != nullptr && newRoot->left->value < d)
             {
-                Delete(d, newRoot->gauche);
+                Delete(d, newRoot->left);
             }
             else
-                if (newRoot->droit != nullptr && newRoot->droit->valeur > d)
+                if (newRoot->right != nullptr && newRoot->right->value > d)
                 {
-                    Delete(d, newRoot->droit);
+                    Delete(d, newRoot->right);
                 }
                 else
                 {
@@ -115,19 +115,19 @@ void BST::Delete(int d, node *newRoot)
 
 vector<int> BST::GetLowerNodesValues(vector<int> values, node *root)
 {
-    if (root->gauche != nullptr)
+    if (root->left != nullptr)
     {
-        values.push_back(root->gauche->valeur);
-        values = GetLowerNodesValues(values, root->gauche);
+        values.push_back(root->left->value);
+        values = GetLowerNodesValues(values, root->left);
     }
 
-    if (root->droit != nullptr )
+    if (root->right != nullptr )
     {
-        values.push_back(root->droit->valeur);
-        values = GetLowerNodesValues(values, root->droit);
+        values.push_back(root->right->value);
+        values = GetLowerNodesValues(values, root->right);
     }
 
-    if(root->droit == nullptr && root->gauche == nullptr)
+    if(root->right == nullptr && root->left == nullptr)
         delete root;
 
     return values;

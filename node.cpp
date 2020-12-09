@@ -4,9 +4,9 @@
 
 #include "node.h"
 
-node::node (int valeur)
+node::node (int value)
 {
-    this->valeur = valeur;
-    gauche = nullptr;
-    droit = nullptr;
+    this->value = value;
+    left = nullptr;
+    right = nullptr;
 }

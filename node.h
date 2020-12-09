@@ -8,9 +8,9 @@
 
 class node {
 public:
-    int valeur;
-    node *gauche;
-    node *droit;
+    int value;
+    node *left;
+    node *right;
     
     node (int valeur); 
 };
