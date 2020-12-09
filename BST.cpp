@@ -71,23 +71,11 @@ void BST::Delete(int d, node *newRoot)
         }
     }
     else
-    if (newRoot->left != nullptr && newRoot->left->value == d)
-    {
-        vector<int> valueArray;
-        valueArray = GetLowerNodesValues(valueArray, newRoot->left);
-        newRoot->left = nullptr;
-
-        for (int i = 0; i < valueArray.size(); ++i)
-        {
-            Insert(valueArray[i]);
-        }
-    }
-    else
-        if (newRoot->right != nullptr && newRoot->right->value == d)
+        if (newRoot->left != nullptr && newRoot->left->value == d)
         {
             vector<int> valueArray;
-            valueArray = GetLowerNodesValues(valueArray, newRoot->right);
-            newRoot->right = nullptr;
+            valueArray = GetLowerNodesValues(valueArray, newRoot->left);
+            newRoot->left = nullptr;
 
             for (int i = 0; i < valueArray.size(); ++i)
             {
@@ -95,21 +83,34 @@ void BST::Delete(int d, node *newRoot)
             }
         }
         else
-            if (newRoot->left != nullptr && newRoot->left->value < d)
+            if (newRoot->right != nullptr && newRoot->right->value == d)
             {
-                Delete(d, newRoot->left);
+                vector<int> valueArray;
+                valueArray = GetLowerNodesValues(valueArray, newRoot->right);
+                newRoot->right = nullptr;
+
+                for (int i = 0; i < valueArray.size(); ++i)
+                {
+                    Insert(valueArray[i]);
+                }
             }
             else
-                if (newRoot->right != nullptr && newRoot->right->value > d)
+                if (newRoot->left != nullptr && newRoot->value > d)
                 {
-                    Delete(d, newRoot->right);
+                    Delete(d, newRoot->left);
                 }
                 else
-                {
-                    cout << "The value is not in the tree, the value cannot be deleted\n";
-                }
+                    if (newRoot->right != nullptr && newRoot->value < d)
+                    {
+                        Delete(d, newRoot->right);
+                    }
+                    else
+                    {
+                        cout << "The value is not in the tree, the value cannot be deleted\n";
+                    }
 
-    root = newRoot;
+    if (newRoot != nullptr)
+        root = newRoot;
 }
 
 vector<int> BST::GetLowerNodesValues(vector<int> values, node *root)
