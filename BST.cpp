@@ -60,17 +60,19 @@ void BST::Insert(int d, node *root)
     }
 }
 
+//Supprime une valeur
 void BST::Delete(int d)
 {
-    if (root == nullptr)
+    if (root == nullptr)    //S'assure que l'arbre n'est pas nul
         cout << "The tree is empty, the value cannot be deleted\n";
     else
-        Delete(d, root);
+        Delete(d, root);    //Commence la récursivité
 }
 
+//Supprime une valeur
 void BST::Delete(int d, node *newRoot)
 {
-    if(root->value == d)
+    if(root->value == d)    //Si la valeur est trouvé, supprime les éléments en dessous et les réinsert dans l'arbre
     {
         vector<int> valueArray;
         valueArray = GetLowerNodesValues(valueArray, newRoot);
@@ -82,7 +84,7 @@ void BST::Delete(int d, node *newRoot)
             Insert(valueArray[i]);
         }
     }
-    else
+    else    //Si la valeur est trouvé à gauche, supprime les éléments en dessous et les réinsert dans l'arbre
         if (newRoot->left != nullptr && newRoot->left->value == d)
         {
             vector<int> valueArray;
@@ -94,7 +96,7 @@ void BST::Delete(int d, node *newRoot)
                 Insert(valueArray[i]);
             }
         }
-        else
+        else    //Si la valeur est trouvé à droite, supprime les éléments en dessous et les réinsert dans l'arbre
             if (newRoot->right != nullptr && newRoot->right->value == d)
             {
                 vector<int> valueArray;
@@ -106,12 +108,12 @@ void BST::Delete(int d, node *newRoot)
                     Insert(valueArray[i]);
                 }
             }
-            else
+            else    //Continue la récursivité à gauche
                 if (newRoot->left != nullptr && newRoot->value > d)
                 {
                     Delete(d, newRoot->left);
                 }
-                else
+                else    //Continue la récursivité à droite
                     if (newRoot->right != nullptr && newRoot->value < d)
                     {
                         Delete(d, newRoot->right);
@@ -122,24 +124,25 @@ void BST::Delete(int d, node *newRoot)
                     }
 
     if (newRoot != nullptr)
-        root = newRoot;
+        root = newRoot;         //Met à jour la variable globale
 }
 
+//Cherche les valeurs en dessous de celle passée en paramètre et les supprime
 vector<int> BST::GetLowerNodesValues(vector<int> values, node *root)
 {
-    if (root->left != nullptr)
+    if (root->left != nullptr)      //Ajoute une valeur à la liste si le prochain noeud n'est pas nul à gauche
     {
         values.push_back(root->left->value);
         values = GetLowerNodesValues(values, root->left);
     }
 
-    if (root->right != nullptr )
+    if (root->right != nullptr )    //Ajoute une valeur à la liste si le prochain noeud n'est pas nul à droite
     {
         values.push_back(root->right->value);
         values = GetLowerNodesValues(values, root->right);
     }
 
-    if(root->right == nullptr && root->left == nullptr)
+    if(root->right == nullptr && root->left == nullptr) //supprime la valeur en arrivant à la fin d'une branche
         delete root;
 
     return values;
@@ -218,21 +221,21 @@ void BST::Add_Tree_Element_To_Array(int* treeContent, node* root, int currentHei
         Add_Tree_Element_To_Array(treeContent, root->right, currentHeight + 1, levelPosition * 2);
 }
 
+//Montre la taille de l'arbre
 int BST::Show_Height()
 {
     return Get_Height(root);
 }
 
+//Calcule la taille de l'arbre
 int BST::Get_Height(node* root)
 {
     if (root == nullptr)
-    {
-        return 0;
-    }
+        return 0;   //Teste si la taille est 0
     else
     {
-        int leftHeight = Get_Height(root->left);
-        int rightHeight = Get_Height(root->right);
+        int leftHeight = Get_Height(root->left);    //Calcule la taille des branches de gauche
+        int rightHeight = Get_Height(root->right);    //Calcule la taille des branches de droite
 
         if (leftHeight > rightHeight)
             return(leftHeight + 1);
@@ -240,11 +243,12 @@ int BST::Get_Height(node* root)
     }
 }
 
+//Affiche les valeurs au dessus de celle écrite par l'utilisateur
 void BST::Show_Uppers(int d)
 {
     vector<int> nodeValues;
     nodeValues.push_back(d);
-    if (root == nullptr || root->value == d)
+    if (root == nullptr || root->value == d)    //Teste s'il y a des valeurs au dessus
         cout << "There is no value above\n";
     else
     {
@@ -252,7 +256,7 @@ void BST::Show_Uppers(int d)
 
         if (nodeValues.size() != 1)
         {
-            reverse(nodeValues.begin(), nodeValues.end());
+            reverse(nodeValues.begin(), nodeValues.end());  //Affiche les valeurs
             cout << "The values above your input, from top to bottom of the tree, are such:\n";
             for (int i = 0; i < nodeValues.size(); ++i)
             {
@@ -265,11 +269,14 @@ void BST::Show_Uppers(int d)
     }
 }
 
+//Calcule les valeurs au dessus de celle écrite par l'utilisateur
 vector<int> BST::Get_Uppers(node *currentRoot, vector<int> nodeValues)
 {
+    //Commence la remonté de la fonction récursive si la valeur est la dernière de sa branche
     if (currentRoot->left == nullptr && currentRoot->right == nullptr)
         return nodeValues;
 
+    //Ajoute une valeur à la liste si elle est trouvé à gauche ou à droite
     if (currentRoot->left != nullptr && currentRoot->left->value == nodeValues[nodeValues.size() - 1])
     {
         nodeValues.push_back(currentRoot->value);
@@ -281,11 +288,13 @@ vector<int> BST::Get_Uppers(node *currentRoot, vector<int> nodeValues)
         return nodeValues;
     }
 
+    //Descend plus loin dans l'arbre
     if (currentRoot->value > nodeValues[nodeValues.size() - 1])
         nodeValues = Get_Uppers(currentRoot->left, nodeValues);
     else if (currentRoot->value < nodeValues[nodeValues.size() - 1])
         nodeValues = Get_Uppers(currentRoot->right, nodeValues);
 
+    //Ajoute une valeur à la liste si elle est trouvé à gauche ou à droite
     if (currentRoot->left != nullptr && currentRoot->left->value == nodeValues[nodeValues.size() - 1])
         nodeValues.push_back(currentRoot->value);
     else if (currentRoot->right != nullptr && currentRoot->right->value == nodeValues[nodeValues.size() - 1])
