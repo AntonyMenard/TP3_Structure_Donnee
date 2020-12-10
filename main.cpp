@@ -52,7 +52,6 @@ void DoCommand()
             if (userInput.at(0) == 'A')
             {
                 bst.Show_Tree();
-                cout << "show tree\n";
             }
             else
                 if (userInput.at(0) == 'H')

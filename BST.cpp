@@ -1,8 +1,9 @@
 //
 // Created by Antony on 2020-12-07.
 //
-
 #include "BST.h"
+#include <math.h> 
+#include <iostream>
 
 BST::BST (node *root)
 {
@@ -135,7 +136,54 @@ vector<int> BST::GetLowerNodesValues(vector<int> values, node *root)
 
 void BST::Show_Tree()
 {
+    int height = Show_Height();
+    int treeMaxSize = 0;
+    for (int i = 0; i < height; i++)
+    {
+        treeMaxSize += pow(2, i);
+    }
+    int* treeContent = new int[treeMaxSize];
 
+    for (int i = 0; i < treeMaxSize; i++)
+    {
+        treeContent[i] = -1;
+    }
+
+    Add_Tree_Element_To_Array(treeContent, root, 1, 1);
+
+    int currentHeight = 1;
+
+    for (int i = 1; i < height; i++)
+    {
+        cout << " ";
+    }
+
+    for (int i = 0; i < treeMaxSize; i++)
+    {
+        if (treeContent[i] != -1)
+            cout << treeContent[i] << " ";
+        else
+            cout << "  ";
+
+        if (i == pow(2, currentHeight) - 2)
+        {
+            cout << endl;
+            currentHeight++;
+            for (int i = 1; i < height - currentHeight + 1; i++)
+            {
+                cout << " ";
+            }
+        }
+    }
+}
+
+void BST::Add_Tree_Element_To_Array(int* treeContent, node* root, int currentHeight, int levelPosition)
+{
+    treeContent[(int)pow(2, currentHeight - 1) + levelPosition - 2] = root->value;
+    if (root->left != nullptr)
+        Add_Tree_Element_To_Array(treeContent, root->left, currentHeight + 1, levelPosition);
+    if (root->right != nullptr)
+        Add_Tree_Element_To_Array(treeContent, root->right, currentHeight + 1, levelPosition + 1);
 }
 
 int BST::Show_Height()
