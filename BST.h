@@ -31,6 +31,7 @@ public:
     vector<int> Get_Uppers(node *currentRoot, vector<int> nodeValues);
     void Archive ();            // Archiver en implémentation séquentielle l’arbre dont la racine est
                                            //dans un fichier texte que vous allez définir.
+    void Generate_Archive(string *archive, node* root);
 };
 
 

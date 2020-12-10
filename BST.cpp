@@ -4,6 +4,7 @@
 #include "BST.h"
 #include <math.h> 
 #include <iostream>
+#include <fstream>
 
 BST::BST (node *root)
 {
@@ -153,7 +154,7 @@ void BST::Show_Tree()
 
     int currentHeight = 1;
 
-    for (int i = 1; i < height; i++)
+    for (int i = 1; i < pow(2, height - currentHeight); i++)
     {
         cout << " ";
     }
@@ -161,15 +162,20 @@ void BST::Show_Tree()
     for (int i = 0; i < treeMaxSize; i++)
     {
         if (treeContent[i] != -1)
-            cout << treeContent[i] << " ";
+            cout << treeContent[i];
         else
-            cout << "  ";
+            cout << " ";
+
+        for (int i = 1; i < pow(2, height - currentHeight + 1); i++)
+        {
+            cout << " ";
+        }
 
         if (i == pow(2, currentHeight) - 2)
         {
             cout << endl;
             currentHeight++;
-            for (int i = 1; i < height - currentHeight + 1; i++)
+            for (int i = 1; i < pow(2, height - currentHeight + 1) / 2; i++)
             {
                 cout << " ";
             }
@@ -181,9 +187,9 @@ void BST::Add_Tree_Element_To_Array(int* treeContent, node* root, int currentHei
 {
     treeContent[(int)pow(2, currentHeight - 1) + levelPosition - 2] = root->value;
     if (root->left != nullptr)
-        Add_Tree_Element_To_Array(treeContent, root->left, currentHeight + 1, levelPosition);
+        Add_Tree_Element_To_Array(treeContent, root->left, currentHeight + 1, levelPosition * 2 - 1);
     if (root->right != nullptr)
-        Add_Tree_Element_To_Array(treeContent, root->right, currentHeight + 1, levelPosition + 1);
+        Add_Tree_Element_To_Array(treeContent, root->right, currentHeight + 1, levelPosition * 2);
 }
 
 int BST::Show_Height()
@@ -243,33 +249,53 @@ vector<int> BST::Get_Uppers(node *currentRoot, vector<int> nodeValues)
         nodeValues.push_back(currentRoot->value);
         return nodeValues;
     }
-    else
-        if (currentRoot->right != nullptr && currentRoot->right->value == nodeValues[nodeValues.size() - 1])
-        {
-            nodeValues.push_back(currentRoot->value);
-            return nodeValues;
-        }
+    else if (currentRoot->right != nullptr && currentRoot->right->value == nodeValues[nodeValues.size() - 1])
+    {
+        nodeValues.push_back(currentRoot->value);
+        return nodeValues;
+    }
 
     if (currentRoot->value > nodeValues[nodeValues.size() - 1])
         nodeValues = Get_Uppers(currentRoot->left, nodeValues);
-    else
-        if (currentRoot->value < nodeValues[nodeValues.size() - 1])
-            nodeValues = Get_Uppers(currentRoot->right, nodeValues);
+    else if (currentRoot->value < nodeValues[nodeValues.size() - 1])
+        nodeValues = Get_Uppers(currentRoot->right, nodeValues);
 
     if (currentRoot->left != nullptr && currentRoot->left->value == nodeValues[nodeValues.size() - 1])
-    {
         nodeValues.push_back(currentRoot->value);
-    }
-    else
-        if (currentRoot->right != nullptr && currentRoot->right->value == nodeValues[nodeValues.size() - 1])
-        {
-            nodeValues.push_back(currentRoot->value);
-        }
+    else if (currentRoot->right != nullptr && currentRoot->right->value == nodeValues[nodeValues.size() - 1])
+        nodeValues.push_back(currentRoot->value);
 
     return  nodeValues;
 }
 
 void BST::Archive ()
 {
+    string *archive = new string();
+    *archive = "";
+    
+    if (root != nullptr)
+        Generate_Archive(archive, root);
 
+    remove("../../../Fichier-Arbre.txt");
+    ofstream fichierArbre("../../../Fichier-Arbre.txt");
+
+    if (!fichierArbre.fail())
+        fichierArbre << *archive;
+
+    fichierArbre.close();
+}
+
+void BST::Generate_Archive(string *archive, node *root)
+{
+    *archive += to_string(root->value) + " ";
+
+    if (root->left != nullptr)
+        Generate_Archive(archive, root->left);
+    else
+        *archive += "/ ";
+
+    if (root->right != nullptr)
+        Generate_Archive(archive, root->right);
+    else
+        *archive += "/ ";
 }
