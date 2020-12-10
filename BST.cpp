@@ -1,8 +1,8 @@
 //
-// Created by Antony on 2020-12-07.
+// Created by Antony Ménard and Nicolas Bisson on 2020-12-07.
 //
 #include "BST.h"
-#include <math.h> 
+#include <math.h>
 #include <iostream>
 #include <fstream>
 
@@ -16,18 +16,25 @@ BST::~BST( )
 
 }
 
+//Permet d'insérer une valeur dans l'arbre
 void BST::Insert(int d)
 {
+    //Si l'arbre ne possède pas de racine, la valeur est placé à celle-ci
     if (root == nullptr)
         root = new node(d);
     else
         Insert(d, root);
 }
 
+//Permet de chercher récursivement pour la position ou la valeur doit être insérée dans l'arbre et effectue l'insertion
 void BST::Insert(int d, node *root)
 {
+    //Vérifie si la valeur a insérée est plus petite ou plus grande que la valeur de la node courante
     if (root->value > d)
     {
+        //Dans le cas où elle est plus petite
+        //Si il n'y a pas de valeur à gauche, la valeur va être inséré à cette position
+        //Sinon cette fonction est réexécuté à la node de gauche
         if (root->left == nullptr)
         {
             root->left = new node(d);
@@ -39,6 +46,9 @@ void BST::Insert(int d, node *root)
     }
     else if (root->value < d)
     {
+        //Dans le cas où elle est plus grande
+        //Si il n'y a pas de valeur à droite, la valeur va être inséré à cette position
+        //Sinon cette fonction est réexécuté à la node de droite
         if (root->right == nullptr)
         {
             root->right = new node(d);
@@ -135,47 +145,60 @@ vector<int> BST::GetLowerNodesValues(vector<int> values, node *root)
     return values;
 }
 
+//Permet d'afficher l'arbre dans la console
 void BST::Show_Tree()
 {
+    //Contient le nombre de niveau dans l'arbre
     int height = Show_Height();
+    //Contient le nombre maximal d'élément contenu dans l'arbre selon le nombre de niveau
     int treeMaxSize = 0;
     for (int i = 0; i < height; i++)
     {
         treeMaxSize += pow(2, i);
     }
+    //Contient tous les valeurs de l'arbre, si la valeur est -1
     int* treeContent = new int[treeMaxSize];
 
+    //Initie les valeurs du tableau
     for (int i = 0; i < treeMaxSize; i++)
     {
         treeContent[i] = -1;
     }
 
+    //Génére le tableau à l'aide de l'arbre
     Add_Tree_Element_To_Array(treeContent, root, 1, 1);
 
+    //Indique la hauteur de l'élément ajouté à la console
     int currentHeight = 1;
 
+    //Ajoute le nombre d'espace nécessaire pour positionner la racine au centre de l'arbre affiché à la console
     for (int i = 1; i < pow(2, height - currentHeight); i++)
     {
         cout << " ";
     }
 
+    //Affiche le tableau sous format d'arbre à la console
     for (int i = 0; i < treeMaxSize; i++)
     {
+        //Affiche la valeur courante à l'écran si elle n'est pas nulle
         if (treeContent[i] != -1)
             cout << treeContent[i];
         else
             cout << " ";
 
+        //Ajoute le nombre d'espace n'écessaire entre les valeurs du niveau courant
         for (int i = 1; i < pow(2, height - currentHeight + 1); i++)
         {
             cout << " ";
         }
 
+        //Effectue le changement de niveau lorsque nécessaire
         if (i == pow(2, currentHeight) - 2)
         {
             cout << endl;
             currentHeight++;
-            for (int i = 1; i < pow(2, height - currentHeight + 1) / 2; i++)
+            //Ajoute le nombre d'espace nécessaire au début du niveau
+            for (int i = 1; i < pow(2, height - currentHeight); i++)
             {
                 cout << " ";
             }
@@ -183,9 +206,12 @@ void BST::Show_Tree()
     }
 }
 
+//Génére le tableau récursivement à l'aide de l'arbre
 void BST::Add_Tree_Element_To_Array(int* treeContent, node* root, int currentHeight, int levelPosition)
 {
+    //Ajoute la valeur courante au tableau
     treeContent[(int)pow(2, currentHeight - 1) + levelPosition - 2] = root->value;
+    //Si il y a une valeur à gauche et/ou à droite appel cette fonction pour cette/ces node
     if (root->left != nullptr)
         Add_Tree_Element_To_Array(treeContent, root->left, currentHeight + 1, levelPosition * 2 - 1);
     if (root->right != nullptr)
@@ -268,27 +294,37 @@ vector<int> BST::Get_Uppers(node *currentRoot, vector<int> nodeValues)
     return  nodeValues;
 }
 
+//Permet de conserver l'arbre en implémentation séquentielle dans un fichier texte
 void BST::Archive ()
 {
+    //Permet de contenir l'implémentation séquentielle à ajouter au fichier
     string *archive = new string();
     *archive = "";
     
+    //Crée l'implémentation séquentielle si il y a une racine
     if (root != nullptr)
         Generate_Archive(archive, root);
 
+    //Supprime et créé le fichier texte afin qu'il soit vide avant d'écrire
     remove("../../../Fichier-Arbre.txt");
     ofstream fichierArbre("../../../Fichier-Arbre.txt");
 
+    //Si le fichier est ouvert, ajoute l'implémentation séquentielle de l'arbre dans celui-ci
     if (!fichierArbre.fail())
         fichierArbre << *archive;
 
     fichierArbre.close();
 }
 
+//Permet de générer récursivement l'implémentation séquentielle de l'arbre dans un pointer de string
+//Des espaces sont ajoutées après les valeurs afin d'indiquer où les chiffres finissent
 void BST::Generate_Archive(string *archive, node *root)
 {
+    //Ajoute la valeur courante à la string archive
     *archive += to_string(root->value) + " ";
 
+    //Appelle cette fonction sur la prochaine node de droite et gauche si elles existent
+    //Sinon la valeur "/" est ajouté à l'implémentation séquentielle
     if (root->left != nullptr)
         Generate_Archive(archive, root->left);
     else
